@@ -1,0 +1,6 @@
+Students: 3
+Average: 60.00
+Highest: 80.00 (C)
+Lowest: 40.00 (A)
+Passed: 2
+Failed: 1
