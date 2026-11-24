@@ -19,17 +19,17 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'rm -rf build results && mkdir -p build results'
-                sh 'javac -d build src/MarksAnalyzer.java'
+                sh 'javac -d build MarksAnalyzer.java'
             }
         }
         stage('Test') {
             steps {
-                sh 'sh tests/run_tests.sh'
+                sh 'sh run_tests.sh'
             }
         }
         stage('Run') {
             steps {
-                sh 'java -cp build MarksAnalyzer data/marks.csv results/report.txt'
+                sh 'java -cp build MarksAnalyzer marks.csv results/report.txt'
                 sh 'cat results/report.txt'
             }
         }
@@ -43,7 +43,7 @@ pipeline {
                         mkdir -p ~/.kaggle
                         cp "$KAGGLE_JSON" ~/.kaggle/kaggle.json
                         chmod 600 ~/.kaggle/kaggle.json
-                        .venv/bin/kaggle kernels push -p kaggle/
+                        .venv/bin/kaggle kernels push -p .
                     '''
                 }
             }
